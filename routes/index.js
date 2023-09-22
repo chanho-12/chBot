@@ -19,6 +19,7 @@ router.post("/sayPost", function (req, res) {
   console.log(req.body);
   const responseBody = {};
   var type = req.body.prompt.split(' ');
+  console.log("type", type[0], type[1])
   if (type[0] == '정보') {
     responseBody.type = type[0];
     responseBody.name = type[1];
