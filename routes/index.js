@@ -133,7 +133,8 @@ const getInfo = async (char, res) => {
       };
       console.log("bodyList : ", ulList[0]);
     });
-    return await res.status(200).send(ulList[0]);
+    const list = [{name : '내쏘서뤼스'}]
+    return await res.status(200).send(list[0]);
     
     // return ulList[0];
   } catch (error) {
