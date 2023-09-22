@@ -43,7 +43,7 @@ router.post("/sayPost", function (req, res) {
 
 const getInfo = async (char, res) => {
   try {
-    console.log("char", char)
+    console.log("char", char);
     const html = await axios.get(
       // "https://loawa.com/char/내쏘서뤼스"
       "https://iloa.gg/character/" + char
@@ -131,14 +131,11 @@ const getInfo = async (char, res) => {
           )
           .text(),
       };
-     console.log("bodyList : ", ulList[0]);
-
-      return res.status(200).send(ulList[0]); 
-    }
-    );
+      console.log("bodyList : ", ulList[0]);
+    });
+    return res.status(200).send(ulList[0]);
     
-
-    
+    // return ulList[0];
   } catch (error) {
     console.error(error);
     return res.status(200).send({});
@@ -150,8 +147,7 @@ router.post("/crawling", function (req, res) {
   const responseBody = {};
   
   var char = '내쏘서뤼스'
-  // getInfo(char);
- res.status(200).send(responseBody);
+  return getInfo(char, res);
 })
 
 
