@@ -34,8 +34,9 @@ router.post("/sayPost", function (req, res) {
     responseBody.job = "소서리스";
     responseBody.level = "1628";
     responseBody.server = "아브렐슈드";
-    return getInfo(type[1], res);
-    // return res.status(200).send(responseBody); 
+    console.log(getInfo(type[1]));
+
+    return res.status(200).send(getInfo(type[1])); 
   }
 
 
@@ -133,8 +134,7 @@ const getInfo = async (char, res) => {
       };
       console.log("bodyList : ", ulList[0]);
     });
-    const list = [{name : '내쏘서뤼스'}]
-    return await res.status(200).send(list[0]);
+    return ulList[0];
     
     // return ulList[0];
   } catch (error) {
@@ -148,7 +148,7 @@ router.post("/crawling", function (req, res) {
   const responseBody = {};
   
   var char = '내쏘서뤼스'
-  return getInfo(char, res);
+  console.log(getInfo(type[1]));
 })
 
 
