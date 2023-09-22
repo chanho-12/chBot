@@ -145,7 +145,7 @@ const getInfo = async (char, res) => {
       };
       console.log("bodyList : ", ulList[0]);
     });
-    return res.status(200).send(ulList);
+    return res.status(200).send(ulList[0]);
     
     // return ulList[0];
   } catch (error) {
