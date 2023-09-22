@@ -18,7 +18,7 @@ router.get("/sayGET", function (req, res) {
   res.status(200).send(responseBody);
 });
 
-router.post("/sayPost", function (req, res) {
+router.post("/sayPost", async function (req, res) {
   console.log(req.body);
   const responseBody = {};
   var type = req.body.prompt.split(' ');
@@ -35,7 +35,7 @@ router.post("/sayPost", function (req, res) {
     responseBody.level = "1628";
     responseBody.server = "아브렐슈드";
     console.log(getInfo(type[1]));
-    getInfo({
+    await getInfo({
       char : type[1]
     })
       .then((response) => {
