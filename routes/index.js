@@ -35,14 +35,22 @@ router.post("/sayPost", function (req, res) {
     responseBody.level = "1628";
     responseBody.server = "아브렐슈드";
     console.log(getInfo(type[1]));
-
-    return res.status(200).send(getInfo(type[1])); 
+    getInfo({
+      char : type[1]
+    })
+      .then((response) => { 
+      return res.status(200).send(response);
+      })
+      .catch((e) => { 
+      return res.status(200).send(e);
+      })
+    // return res.status(200).send(getInfo(type[1])); 
   }
 
 
 });
 
-const getInfo = async (char, res) => {
+const getInfo = async (char) => {
   try {
     console.log("char", char);
     const html = await axios.get(
