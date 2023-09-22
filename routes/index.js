@@ -34,9 +34,18 @@ router.post("/sayPost", function (req, res) {
     responseBody.job = "소서리스";
     responseBody.level = "1628";
     responseBody.server = "아브렐슈드";
-    return function () { 
-      getInfo(type[1], res);
-    }
+
+    new Promise((resolve) => { 
+      getInfo(type[1]);
+    }).then((response) => { 
+      console.log("response", response);
+      return res.status(200).send(response);
+    }).catch((er) => { 
+      return res.status(200).send(er);
+    })
+    // return function () { 
+    //   getInfo(type[1], res);
+    // }
     // getInfo({
     //   char: type[1]
     // })
@@ -53,7 +62,7 @@ router.post("/sayPost", function (req, res) {
 
 });
 
-const getInfo = async (char, res) => {
+const getInfo = async (char) => {
   try {
     console.log("char", char);
     const html = await axios.get(
@@ -145,7 +154,8 @@ const getInfo = async (char, res) => {
       };
       console.log("bodyList : ", ulList[0]);
     });
-    return res.status(200).send(ulList[0]);
+    return ulList[0];
+    // return res.status(200).send(ulList[0]);
     
     // return ulList[0];
   } catch (error) {
