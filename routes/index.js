@@ -42,6 +42,7 @@ router.post("/sayPost", function (req, res) {
 
 const getInfo = async (char, res) => {
   try {
+    console.log("char", char)
     const html = await axios.get(
       // "https://loawa.com/char/내쏘서뤼스"
       "https://iloa.gg/character/" + char
