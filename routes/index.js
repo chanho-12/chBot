@@ -34,13 +34,13 @@ router.post("/sayPost", function (req, res) {
     responseBody.job = "소서리스";
     responseBody.level = "1628";
     responseBody.server = "아브렐슈드";
-    return getInfo(type[1]);
+    return getInfo(type[1], res);
   }
 
 
 });
 
-const getInfo = async (char) => {
+const getInfo = async (char, res) => {
   try {
     const html = await axios.get(
       // "https://loawa.com/char/내쏘서뤼스"
@@ -134,7 +134,7 @@ const getInfo = async (char) => {
     return res.status(200).send(ulList[0]);
   } catch (error) {
     console.error(error);
-    return res.status(200).send({}); 
+    return res.status(200).send({});
   }
 };
 
