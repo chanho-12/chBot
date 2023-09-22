@@ -17,9 +17,16 @@ router.get("/sayGET", function (req, res) {
 
 router.post("/sayPost", function (req, res) {
   console.log(req.body);
-  const responseBody = {
-    name: "내쏘서뤼스 Post",
-  };
+  const responseBody = {};
+  var type = req.body.prompt.split(' ');
+  if (type[0] == '정보') { 
+    responseBody.name = req.body.prompt[1];
+    responseBody.name = "소서리스";
+    responseBody.level = "1628";
+    responseBody.server = "아브렐슈드";
+    
+  }
+
   res.status(200).send(responseBody);
 });
 module.exports = router;
