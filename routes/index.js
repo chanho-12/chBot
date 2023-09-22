@@ -19,7 +19,8 @@ router.post("/sayPost", function (req, res) {
   console.log(req.body);
   const responseBody = {};
   var type = req.body.prompt.split(' ');
-  if (type[0] == '정보') { 
+  if (type[0] == '정보') {
+    responseBody.type = type[0];
     responseBody.name = type[1];
     responseBody.name = "소서리스";
     responseBody.level = "1628";
