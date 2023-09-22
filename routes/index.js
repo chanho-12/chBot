@@ -23,7 +23,7 @@ router.post("/sayPost", function (req, res) {
   if (type[0] == '정보') {
     responseBody.type = type[0];
     responseBody.name = type[1];
-    responseBody.name = "소서리스";
+    responseBody.job = "소서리스";
     responseBody.level = "1628";
     responseBody.server = "아브렐슈드";
     
