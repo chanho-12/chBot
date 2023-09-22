@@ -38,7 +38,8 @@ router.post("/sayPost", function (req, res) {
     getInfo({
       char : type[1]
     })
-      .then((response) => { 
+      .then((response) => {
+      console.log("response!!", response)
       return res.status(200).send(response);
       })
       .catch((e) => { 
