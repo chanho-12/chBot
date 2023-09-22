@@ -20,7 +20,7 @@ router.post("/sayPost", function (req, res) {
   const responseBody = {};
   var type = req.body.prompt.split(' ');
   if (type[0] == '정보') { 
-    responseBody.name = req.body.prompt[1];
+    responseBody.name = type[1];
     responseBody.name = "소서리스";
     responseBody.level = "1628";
     responseBody.server = "아브렐슈드";
