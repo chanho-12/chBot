@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   res.render('index.html');
 });
 
-router.post("/sayHello", function (req, res) {
+router.get("/sayHello", function (req, res) {
   console.log(req.body);
   const responseBody = {
     version: "2.0",
