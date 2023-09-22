@@ -34,9 +34,8 @@ router.post("/sayPost", async function (req, res) {
     responseBody.job = "소서리스";
     responseBody.level = "1628";
     responseBody.server = "아브렐슈드";
-    console.log(getInfo(type[1]));
     await getInfo({
-      char : type[1]
+      char: type[1]
     })
       .then((response) => {
       console.log("response!!", response)
@@ -51,7 +50,7 @@ router.post("/sayPost", async function (req, res) {
 
 });
 
-const getInfo = async (char) => {
+const getInfo = async (char, callback) => {
   try {
     console.log("char", char);
     const html = await axios.get(
@@ -143,7 +142,7 @@ const getInfo = async (char) => {
       };
       console.log("bodyList : ", ulList[0]);
     });
-    return ulList[0];
+    callback(ulList[0]);
     
     // return ulList[0];
   } catch (error) {
