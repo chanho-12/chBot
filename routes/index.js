@@ -18,7 +18,7 @@ router.get("/sayGET", function (req, res) {
   res.status(200).send(responseBody);
 });
 
-router.post("/sayPost", async function (req, res) {
+router.post("/sayPost", function (req, res) {
   console.log(req.body);
   const responseBody = {};
   var type = req.body.prompt.split(' ');
@@ -34,23 +34,26 @@ router.post("/sayPost", async function (req, res) {
     responseBody.job = "소서리스";
     responseBody.level = "1628";
     responseBody.server = "아브렐슈드";
-    await getInfo({
-      char: type[1]
-    })
-      .then((response) => {
-      console.log("response!!", response)
-      return res.status(200).send(response);
-      })
-      .catch((e) => { 
-      return res.status(200).send(e);
-      })
+    return function () { 
+      getInfo(type[1], res);
+    }
+    // getInfo({
+    //   char: type[1]
+    // })
+    //   .then((response) => {
+    //   console.log("response!!", response)
+    //   return res.status(200).send(response);
+    //   })
+    //   .catch((e) => { 
+    //   return res.status(200).send(e);
+    //   })
     // return res.status(200).send(getInfo(type[1])); 
   }
 
 
 });
 
-const getInfo = async (char, callback) => {
+const getInfo = async (char, res) => {
   try {
     console.log("char", char);
     const html = await axios.get(
@@ -142,7 +145,7 @@ const getInfo = async (char, callback) => {
       };
       console.log("bodyList : ", ulList[0]);
     });
-    callback(ulList[0]);
+    return res.status(200).send(ulList);
     
     // return ulList[0];
   } catch (error) {
