@@ -132,7 +132,9 @@ const getInfo = async (char, res) => {
       };
     });
     console.log("bodyList : ", ulList[0]);
-    return res.status(200).send(ulList[0]);
+    const responseBody = {};
+    responseBody.job = "소서리스";
+    return res.status(200).send(responseBody);
   } catch (error) {
     console.error(error);
     return res.status(200).send({});
@@ -142,6 +144,7 @@ const getInfo = async (char, res) => {
 router.post("/crawling", function (req, res) {
   console.log("req.body", req.body);
   const responseBody = {};
+  
   var char = '내쏘서뤼스'
   // getInfo(char);
  res.status(200).send(responseBody);
