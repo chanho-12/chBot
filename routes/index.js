@@ -174,7 +174,7 @@ const getSiblings = async (req, res, char) => {
         "https://developer-lostark.game.onstove.com/armories/characters/내쏘서뤼스/profiles";
       headers = {
         headers: {
-          Authorizations:
+          'Authorizations':
             "Bearer token eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAwNjYzMzMifQ.CUi0sR_SSEPPaLAkJLEfF3rM3Kw_wJ_PhldbAe_iqMBQJXs1YilYfphyJUVM96zlCwQJ4cjiTlpfg0lTKkpinBcGZEI9k85tc5ovCV6p35TDifhJcxkWdDKlJbCgs6CY5s3UJ5lNI5MKBmW_QrWJfJNzPK2Nff0nECazs_wrT-Jnzg9LXzWRsjbql4FLYjM0NehtI2Ll5o0CcuzYqGKvQkDfs52QQ-640pYJ2WdllW7f65_5FzjJ-kGe-7JoriBUcIlsr7xUQJOH_2uVh8t7ErUtT_K2TAslwFrY4TWr-x521Aw2ugSAqTzWZSjZIz7zi5cASSjgnlSVnOj-6gDrrA",
         },
       };
