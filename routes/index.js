@@ -170,7 +170,7 @@ const getSiblings = async (req, res, char, command) => {
 
     console.log("sib", sib.data);
     
-    let data = [
+    var data = [
       command = command,
       data = sib.data
       
