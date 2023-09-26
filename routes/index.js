@@ -79,9 +79,9 @@ const getInfo = async (req, res, char) => {
     // 3
     // const bodyList = $("div.absolute top-0 -left-0.5");
     const bodyList = $("div.flex.flex-col.w-full");
-    // console.log("!!!!!", bodyList.find("text-sm text-positive-lesser"));
+    console.log("!!!!!", bodyList);
     bodyList.map((i, element) => {
-        console.log("!!!!!", $(element).find("text-sm text-positive-lesser"))
+        
           ulList[i] = {
             server: $(element)
               .find("p.space-x-2.text-xs span.inline-block:nth-child(1)")
