@@ -158,37 +158,20 @@ const getInfo = async (req, res, char) => {
 const getSiblings = async (req, res, char) => {
   try {
     console.log("char", char);
-    let ulList = [];
-    // const html = await axios.get(
-    //   // "https://loawa.com/char/내쏘서뤼스"
-    //   "https://developer-lostark.game.onstove.com/armories/characters/내쏘서뤼스/profiles"
-    // );
-    // 2
-    // console.log("###############3", html.data)
-    // const $ = cheerio.load(html.data);
-    // 3
-    // const bodyList = $("div.absolute top-0 -left-0.5");
-    // const bodyList = $("div.flex.flex-col.w-full");
-
       var url =
-        "https://developer-lostark.game.onstove.com/armories/characters/내쏘서뤼스/profiles";
-      // headers = {
-      //   headers: {
-      //     Authorization:
-      //       "Bearer token eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAwNjYzMzMifQ.CUi0sR_SSEPPaLAkJLEfF3rM3Kw_wJ_PhldbAe_iqMBQJXs1YilYfphyJUVM96zlCwQJ4cjiTlpfg0lTKkpinBcGZEI9k85tc5ovCV6p35TDifhJcxkWdDKlJbCgs6CY5s3UJ5lNI5MKBmW_QrWJfJNzPK2Nff0nECazs_wrT-Jnzg9LXzWRsjbql4FLYjM0NehtI2Ll5o0CcuzYqGKvQkDfs52QQ-640pYJ2WdllW7f65_5FzjJ-kGe-7JoriBUcIlsr7xUQJOH_2uVh8t7ErUtT_K2TAslwFrY4TWr-x521Aw2ugSAqTzWZSjZIz7zi5cASSjgnlSVnOj-6gDrrA",
-      //   },
-      // };
-    const test = await axios.get(url, {
+      "https://developer-lostark.game.onstove.com/characters/" + char + "/siblings";
+
+    const sib = await axios.get(url, {
       headers: {
         Authorization:
           "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAwNjYzMzMifQ.CUi0sR_SSEPPaLAkJLEfF3rM3Kw_wJ_PhldbAe_iqMBQJXs1YilYfphyJUVM96zlCwQJ4cjiTlpfg0lTKkpinBcGZEI9k85tc5ovCV6p35TDifhJcxkWdDKlJbCgs6CY5s3UJ5lNI5MKBmW_QrWJfJNzPK2Nff0nECazs_wrT-Jnzg9LXzWRsjbql4FLYjM0NehtI2Ll5o0CcuzYqGKvQkDfs52QQ-640pYJ2WdllW7f65_5FzjJ-kGe-7JoriBUcIlsr7xUQJOH_2uVh8t7ErUtT_K2TAslwFrY4TWr-x521Aw2ugSAqTzWZSjZIz7zi5cASSjgnlSVnOj-6gDrrA",
       },
     });
 
-        console.log("testtesttesttest", test);
+        console.log("sib", sib.data);
 
     // return getList.push(ulList[0]);
-    return res.status(200).send({ name: undefined });
+    return res.status(200).send(sib.data);
 
     // return ulList[0];
   } catch (error) {
