@@ -79,7 +79,7 @@ const getInfo = async (req, res, char) => {
     // 3
     // const bodyList = $("div.absolute top-0 -left-0.5");
     const bodyList = $("div.flex.flex-col.w-full");
-
+    
     bodyList.map((i, element) => {
       ulList[i] = {
         server: $(element)
@@ -164,7 +164,7 @@ const getInfo = async (req, res, char) => {
     // return ulList[0];
   } catch (error) {
     console.error(error);
-    return res.status(200).send({});
+    return res.status(200).send({name: undefined});
   }
 };
 
