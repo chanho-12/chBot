@@ -79,7 +79,10 @@ const getInfo = async (req, res, char) => {
     // 3
     // const bodyList = $("div.absolute top-0 -left-0.5");
     const bodyList = $("div.flex.flex-col.w-full");
-    console.log("!!!!!", bodyList);
+    console.log("!!!!!", bodyList.length);
+    if (bodyList.length == 0) { 
+      return res.status(200).send({ name: undefined });
+    }
     bodyList.map((i, element) => {
         
           ulList[i] = {
