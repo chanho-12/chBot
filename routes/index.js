@@ -18,6 +18,8 @@ router.get("/sayGET", function (req, res) {
   res.status(200).send(responseBody);
 });
 
+var getList = []
+
 router.post("/sayPost", function (req, res) {
   console.log(req.body);
   const responseBody = {};
@@ -34,15 +36,16 @@ router.post("/sayPost", function (req, res) {
     responseBody.job = "소서리스";
     responseBody.level = "1628";
     responseBody.server = "아브렐슈드";
-
-    new Promise((resolve) => { 
-      getInfo(type[1]);
-    }).then((response) => { 
-      console.log("response", response);
-      return res.status(200).send(response);
-    }).catch((er) => { 
-      return res.status(200).send(er);
-    })
+    
+    return getInfo(req , res, type[1])
+    // new Promise((resolve) => { 
+    //   getInfo(type[1]);
+    // }).then((response) => { 
+    //   console.log("response", response);
+    //   return res.status(200).send(response);
+    // }).catch((er) => { 
+    //   return res.status(200).send(er);
+    // })
     // return function () { 
     //   getInfo(type[1], res);
     // }
@@ -62,14 +65,14 @@ router.post("/sayPost", function (req, res) {
 
 });
 
-const getInfo = async (char) => {
+const getInfo = async (req, res, char) => {
   try {
     console.log("char", char);
+    let ulList = [];
     const html = await axios.get(
       // "https://loawa.com/char/내쏘서뤼스"
       "https://iloa.gg/character/" + char
     );
-    let ulList = [];
     // 2
     // console.log("###############3", html.data)
     const $ = cheerio.load(html.data);
@@ -152,10 +155,11 @@ const getInfo = async (char) => {
           )
           .text(),
       };
+      console.log("type", typeof(ulList[0]));
       console.log("bodyList : ", ulList[0]);
     });
-    return ulList[0];
-    // return res.status(200).send(ulList[0]);
+    // return getList.push(ulList[0]);
+    return res.status(200).send(ulList[0]);
     
     // return ulList[0];
   } catch (error) {
