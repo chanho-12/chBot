@@ -170,7 +170,14 @@ const getSiblings = async (req, res, char, command) => {
 
     console.log("sib", sib.data);
     
-    let data = Object.assign(sib.data, command);
+    let data = [
+      command = command,
+      data = [
+        sib.data
+      ]
+      
+    ]
+    
     console.log("data", data);
 
 
