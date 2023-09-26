@@ -169,6 +169,13 @@ const getSiblings = async (req, res, char, command) => {
     });
 
     console.log("sib", sib.data);
+
+    sib.data.sort(function (a, b) { 
+      if (a.hasOwnProperty('ItemAvgLevel')) { 
+        return b.value - a.value;
+      }
+    })
+    console.log("newsib", sib.data);
     
     var data = [
       command = command,
