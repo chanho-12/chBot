@@ -37,29 +37,10 @@ router.post("/sayPost", function (req, res) {
     responseBody.level = "1628";
     responseBody.server = "아브렐슈드";
     
-    return getInfo(req , res, type[1])
-    // new Promise((resolve) => { 
-    //   getInfo(type[1]);
-    // }).then((response) => { 
-    //   console.log("response", response);
-    //   return res.status(200).send(response);
-    // }).catch((er) => { 
-    //   return res.status(200).send(er);
-    // })
-    // return function () { 
-    //   getInfo(type[1], res);
-    // }
-    // getInfo({
-    //   char: type[1]
-    // })
-    //   .then((response) => {
-    //   console.log("response!!", response)
-    //   return res.status(200).send(response);
-    //   })
-    //   .catch((e) => { 
-    //   return res.status(200).send(e);
-    //   })
-    // return res.status(200).send(getInfo(type[1])); 
+    return getInfo(req, res, type[1])
+  }
+  else if (type[0] == '부캐') { 
+    return getSiblings(req, res , type[1]);
   }
 
 
@@ -79,7 +60,7 @@ const getInfo = async (req, res, char) => {
     // 3
     // const bodyList = $("div.absolute top-0 -left-0.5");
     const bodyList = $("div.flex.flex-col.w-full");
-    console.log("!!!!!", bodyList.length);
+    
     if (bodyList.length == 0) { 
       return res.status(200).send({ name: undefined });
     }
@@ -173,12 +154,59 @@ const getInfo = async (req, res, char) => {
   }
 };
 
-router.post("/crawling", function (req, res) {
+
+const getSiblings = async (req, res, char) => {
+  try {
+    console.log("char", char);
+    let ulList = [];
+    // const html = await axios.get(
+    //   // "https://loawa.com/char/내쏘서뤼스"
+    //   "https://developer-lostark.game.onstove.com/armories/characters/내쏘서뤼스/profiles"
+    // );
+    // 2
+    // console.log("###############3", html.data)
+    const $ = cheerio.load(html.data);
+    // 3
+    // const bodyList = $("div.absolute top-0 -left-0.5");
+    const bodyList = $("div.flex.flex-col.w-full");
+
+      var url =
+        "https://developer-lostark.game.onstove.com/armories/characters/내쏘서뤼스/profiles";
+      headers = {
+        headers: {
+          Authorizations:
+            "Bearer token eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAwNjYzMzMifQ.CUi0sR_SSEPPaLAkJLEfF3rM3Kw_wJ_PhldbAe_iqMBQJXs1YilYfphyJUVM96zlCwQJ4cjiTlpfg0lTKkpinBcGZEI9k85tc5ovCV6p35TDifhJcxkWdDKlJbCgs6CY5s3UJ5lNI5MKBmW_QrWJfJNzPK2Nff0nECazs_wrT-Jnzg9LXzWRsjbql4FLYjM0NehtI2Ll5o0CcuzYqGKvQkDfs52QQ-640pYJ2WdllW7f65_5FzjJ-kGe-7JoriBUcIlsr7xUQJOH_2uVh8t7ErUtT_K2TAslwFrY4TWr-x521Aw2ugSAqTzWZSjZIz7zi5cASSjgnlSVnOj-6gDrrA",
+        },
+      };
+      const test = await axios.get(url, headers);
+
+        console.log("test", test);
+
+    // return getList.push(ulList[0]);
+    return res.status(200).send({ name: undefined });
+
+    // return ulList[0];
+  } catch (error) {
+    console.error("error", error);
+    return res.status(200).send({ name: undefined });
+  }
+};
+
+router.post("/crawling", async function (req, res) {
   console.log("req.body", req.body);
   const responseBody = {};
   
-  var char = '내쏘서뤼스'
-  console.log(getInfo(type[1]));
+  var url = "https://developer-lostark.game.onstove.com/armories/characters/내쏘서뤼스/profiles";
+  headers = {
+    headers: {
+      'Authorizations':
+        "Bearer token eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAwNjYzMzMifQ.CUi0sR_SSEPPaLAkJLEfF3rM3Kw_wJ_PhldbAe_iqMBQJXs1YilYfphyJUVM96zlCwQJ4cjiTlpfg0lTKkpinBcGZEI9k85tc5ovCV6p35TDifhJcxkWdDKlJbCgs6CY5s3UJ5lNI5MKBmW_QrWJfJNzPK2Nff0nECazs_wrT-Jnzg9LXzWRsjbql4FLYjM0NehtI2Ll5o0CcuzYqGKvQkDfs52QQ-640pYJ2WdllW7f65_5FzjJ-kGe-7JoriBUcIlsr7xUQJOH_2uVh8t7ErUtT_K2TAslwFrY4TWr-x521Aw2ugSAqTzWZSjZIz7zi5cASSjgnlSVnOj-6gDrrA",
+    },
+  };
+  const test = await axios.get(url, headers)
+
+
+  console.log("test", test);
 })
 
 
