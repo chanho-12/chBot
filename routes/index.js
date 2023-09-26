@@ -165,10 +165,10 @@ const getSiblings = async (req, res, char) => {
     // );
     // 2
     // console.log("###############3", html.data)
-    const $ = cheerio.load(html.data);
+    // const $ = cheerio.load(html.data);
     // 3
     // const bodyList = $("div.absolute top-0 -left-0.5");
-    const bodyList = $("div.flex.flex-col.w-full");
+    // const bodyList = $("div.flex.flex-col.w-full");
 
       var url =
         "https://developer-lostark.game.onstove.com/armories/characters/내쏘서뤼스/profiles";
@@ -180,7 +180,7 @@ const getSiblings = async (req, res, char) => {
       };
       const test = await axios.get(url, headers);
 
-        console.log("test", test);
+        console.log("testtesttesttest", test);
 
     // return getList.push(ulList[0]);
     return res.status(200).send({ name: undefined });
