@@ -219,9 +219,6 @@ const getWeeklyPay = async (req, res, char, command) => {
     sib.data.sort(function (a, b) {
       return b.ItemAvgLevel - a.ItemAvgLevel;
     });
-    console.log('sort filter', sib.data)
-    sib.data.slice(0, 5);
-    console.log('sort filter slice', sib.data)
     
     var data = [(command = command), (data = sib.data)];
 
