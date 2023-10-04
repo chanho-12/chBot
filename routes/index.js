@@ -62,7 +62,8 @@ const getInfo = async (req, res, char, command) => {
     const bodyList = $("div.flex.flex-col.w-full");
 
     if (bodyList.length == 0) {
-      return res.status(200).send({ name: undefined });
+      
+      return res.status(200).send({  command, name: undefined });
     }
     bodyList.map((i, element) => {
       ulList[i] = {
@@ -171,9 +172,7 @@ const getSiblings = async (req, res, char, command) => {
     console.log("sib", sib.data);
 
     sib.data.sort(function (a, b) { 
-      if (a.hasOwnProperty('ItemAvgLevel')) { 
-        return b.ItemAvgLevel - a.ItemAvgLevel;
-      }
+      return b.ItemAvgLevel - a.ItemAvgLevel;
     })
     console.log("newsib", sib.data);
     
