@@ -177,7 +177,7 @@ const getSiblings = async (req, res, char, command) => {
 
     console.log("sib", sib.data);
     if (sib.data == null) { 
-      NullData = [{name : undefined}]
+      NullData = [(command = command), (data = {})];
       return res.status(200).send(NullData);
     }
     sib.data.sort(function (a, b) { 
