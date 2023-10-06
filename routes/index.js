@@ -30,23 +30,24 @@ router.post("/sayPost", function (req, res) {
     return res.status(200).send(responseBody);
   }
 
-  if (type[0] == '정보') {
+  if (type[0] == "정보") {
     responseBody.type = type[0];
     // responseBody.name = type[1];
     responseBody.job = "소서리스";
     responseBody.level = "1628";
     responseBody.server = "아브렐슈드";
-    
-    return getInfo(req, res, type[1], type[0])
-  }
-  else if (type[0] == '부캐') {
+
+    return getInfo(req, res, type[1], type[0]);
+  } else if (type[0] == "부캐") {
     return getSiblings(req, res, type[1], type[0]);
-  }
-  else if (type[0] == '주급') {
+  } else if (type[0] == "주급") {
     return getWeeklyPay(req, res, type[1], type[0]);
-  }
-  else if (type[0] == '내실') { 
+  } else if (type[0] == "내실") {
     return getInner(req, res, type[1], type[0]);
+  } else if (type[0] == "보석") {
+    return getGems(req, res, type[1], type[0]);
+  } else if (type[0] == "장비") {
+    return getEq(req, res, type[1], type[0]);
   }
 
 
@@ -178,7 +179,6 @@ const getSiblings = async (req, res, char, command) => {
     console.log("sib", sib.data);
     if (sib.data == null) { 
       NullData = [(command = command), (data = {})];
-      console.log("???", sib.data)
       return res.status(200).send(NullData);
     }
     sib.data.sort(function (a, b) { 
@@ -221,6 +221,11 @@ const getWeeklyPay = async (req, res, char, command) => {
       },
     });
 
+    if (sib.data == null) {
+      NullData = [(command = command), (data = {})];
+      return res.status(200).send(NullData);
+    }
+
     sib.data.sort(function (a, b) {
       return b.ItemAvgLevel - a.ItemAvgLevel;
     });
@@ -253,7 +258,70 @@ const getInner = async (req, res, char, command) => {
           "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAwNjYzMzMifQ.CUi0sR_SSEPPaLAkJLEfF3rM3Kw_wJ_PhldbAe_iqMBQJXs1YilYfphyJUVM96zlCwQJ4cjiTlpfg0lTKkpinBcGZEI9k85tc5ovCV6p35TDifhJcxkWdDKlJbCgs6CY5s3UJ5lNI5MKBmW_QrWJfJNzPK2Nff0nECazs_wrT-Jnzg9LXzWRsjbql4FLYjM0NehtI2Ll5o0CcuzYqGKvQkDfs52QQ-640pYJ2WdllW7f65_5FzjJ-kGe-7JoriBUcIlsr7xUQJOH_2uVh8t7ErUtT_K2TAslwFrY4TWr-x521Aw2ugSAqTzWZSjZIz7zi5cASSjgnlSVnOj-6gDrrA",
       },
     });
+    if (sib.data == null) {
+      NullData = [(command = command), (data = {})];
+      return res.status(200).send(NullData);
+    }
+    var data = [(command = command), (data = sib.data)];
 
+    // return getList.push(ulList[0]);
+    return res.status(200).send(data);
+
+    // return ulList[0];
+  } catch (error) {
+    console.error("error", error);
+    return res.status(200).send({ name: undefined });
+  }
+};
+
+const getGems = async (req, res, char, command) => {
+  try {
+    console.log("char", char, command);
+    var url =
+      "https://developer-lostark.game.onstove.com/armories/characters/" +
+      char +
+      "/gems";
+
+    const sib = await axios.get(url, {
+      headers: {
+        Authorization:
+          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAwNjYzMzMifQ.CUi0sR_SSEPPaLAkJLEfF3rM3Kw_wJ_PhldbAe_iqMBQJXs1YilYfphyJUVM96zlCwQJ4cjiTlpfg0lTKkpinBcGZEI9k85tc5ovCV6p35TDifhJcxkWdDKlJbCgs6CY5s3UJ5lNI5MKBmW_QrWJfJNzPK2Nff0nECazs_wrT-Jnzg9LXzWRsjbql4FLYjM0NehtI2Ll5o0CcuzYqGKvQkDfs52QQ-640pYJ2WdllW7f65_5FzjJ-kGe-7JoriBUcIlsr7xUQJOH_2uVh8t7ErUtT_K2TAslwFrY4TWr-x521Aw2ugSAqTzWZSjZIz7zi5cASSjgnlSVnOj-6gDrrA",
+      },
+    });
+    if (sib.data == null) {
+      NullData = [(command = command), (data = {})];
+      return res.status(200).send(NullData);
+    }
+    var data = [(command = command), (data = sib.data)];
+
+    // return getList.push(ulList[0]);
+    return res.status(200).send(data);
+
+    // return ulList[0];
+  } catch (error) {
+    console.error("error", error);
+    return res.status(200).send({ name: undefined });
+  }
+};
+
+const getEq = async (req, res, char, command) => {
+  try {
+    console.log("char", char, command);
+    var url =
+      "https://developer-lostark.game.onstove.com/armories/characters/" +
+      char +
+      "/equipment";
+
+    const sib = await axios.get(url, {
+      headers: {
+        Authorization:
+          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAwNjYzMzMifQ.CUi0sR_SSEPPaLAkJLEfF3rM3Kw_wJ_PhldbAe_iqMBQJXs1YilYfphyJUVM96zlCwQJ4cjiTlpfg0lTKkpinBcGZEI9k85tc5ovCV6p35TDifhJcxkWdDKlJbCgs6CY5s3UJ5lNI5MKBmW_QrWJfJNzPK2Nff0nECazs_wrT-Jnzg9LXzWRsjbql4FLYjM0NehtI2Ll5o0CcuzYqGKvQkDfs52QQ-640pYJ2WdllW7f65_5FzjJ-kGe-7JoriBUcIlsr7xUQJOH_2uVh8t7ErUtT_K2TAslwFrY4TWr-x521Aw2ugSAqTzWZSjZIz7zi5cASSjgnlSVnOj-6gDrrA",
+      },
+    });
+    if (sib.data == null) {
+      NullData = [(command = command), (data = {})];
+      return res.status(200).send(NullData);
+    }
     var data = [(command = command), (data = sib.data)];
 
     // return getList.push(ulList[0]);
