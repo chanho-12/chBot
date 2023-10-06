@@ -342,7 +342,7 @@ const getEngraving = async (req, res, char, command) => {
     var url =
       "https://developer-lostark.game.onstove.com/armories/characters/" +
       char +
-      "/engracings";
+      "/engravings";
 
     const sib = await axios.get(url, {
       headers: {
