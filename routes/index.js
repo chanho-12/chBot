@@ -151,18 +151,18 @@ const getInfo = async (req, res, char, command) => {
           .text(),
         braceletStat: $(element)
           .find(
-            "div.cursor-pointer:nth-child(1) div.mb-3.flex.items-center.gap-3 span"
+            "div.cursor-pointer:nth-child(1) div.mb-3.flex.items-center.gap-3 span:nth-child(2)"
           )
           .text(),
         braceletStatTest: $(element)
           .find(
-            "div.cursor-pointer:nth-child(1) div.mb-3.flex.items-center.gap-3"
+            "div.cursor-pointer:nth-child(1) div.mb-3.flex.items-center.gap-3 div" 
           )
           .text(),
         braceletStatTest1: $(element)
           .find(
             "div.cursor-pointer:nth-child(1) div.mb-3.flex.items-center.gap-3"
-          ),
+          ).children(),
           
         braceletStat2: $(element)
           .find(
