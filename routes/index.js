@@ -151,14 +151,14 @@ const getInfo = async (req, res, char, command) => {
           .text(),
         braceletStat: $(element)
           .find(
-            "div.cursor-pointer:nth-child(1) div.mb-3.flex.items-center.gap-3"
+            "div.cursor-pointer:nth-child(1) div.mb-3.flex.items-center.gap-3 span"
           )
           .text(),
-        // braceletStat2: $(element)
-        //   .find(
-        //     "div.cursor-pointer:nth-child(1) div.flex.items-center.gap-4 div.space-y-1 p:nth-child(2)"
-        //   )
-        //   .text(),
+        braceletStat2: $(element)
+          .find(
+            "div.cursor-pointer:nth-child(1) div.flex.items-center.gap-4 div.space-y-1 span"
+          )
+          .text(),
       };
       console.log("type", typeof ulList[0]);
       console.log("bodyList : ", ulList[0]);
