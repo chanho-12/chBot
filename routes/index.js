@@ -151,7 +151,7 @@ const getInfo = async (req, res, char, command) => {
           .text(),
         braceletStat: $(element)
           .find(
-            "팔찌"
+            "div.cursor-pointer:nth-child(1) div.flex.items-center.gap-3 span:nth-child(1)"
           )
           .text(),
         // braceletStat2: $(element)
