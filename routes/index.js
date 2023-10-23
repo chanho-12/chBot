@@ -149,6 +149,9 @@ const getInfo = async (req, res, char, command) => {
             "div.flex.flex-col.flex-1.gap-4 div:nth-child(3) div.flex.justify-between.cursor-pointer.select-none div.flex.items-center.gap-2 span:nth-child(1)"
           )
           .text(),
+        braceletStat: $(element)
+          .find("div.cursor-pointer:nth-child(1) div.flex.items-center.gap-3 span")
+          .text(),
       };
       console.log("type", typeof ulList[0]);
       console.log("bodyList : ", ulList[0]);
