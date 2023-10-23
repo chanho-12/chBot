@@ -154,16 +154,6 @@ const getInfo = async (req, res, char, command) => {
             "div.cursor-pointer:nth-child(1) div.mb-3.flex.items-center.gap-3 span:nth-child(2)"
           )
           .text(),
-        braceletStatTest: $(element)
-          .find(
-            "div.cursor-pointer:nth-child(1) div.mb-3.flex.items-center.gap-3 div" 
-          )
-          .text(),
-        braceletStatTest1: $(element)
-          .find(
-            "div.cursor-pointer:nth-child(1) div.mb-3.flex.items-center.gap-3"
-          ).children(),
-          
         braceletStat2: $(element)
           .find(
             "div.cursor-pointer:nth-child(1) div.flex.items-center.gap-4 div.space-y-1 p:nth-child(1) span:nth-child(1)"
@@ -187,6 +177,11 @@ const getInfo = async (req, res, char, command) => {
         braceletStat6: $(element)
           .find(
             "div.cursor-pointer:nth-child(1) div.flex.items-center.gap-4 div.space-y-1 p:nth-child(2) span:nth-child(3)"
+          )
+          .text(),
+        cho: $(element)
+          .find(
+            "div.cursor-pointer:nth-child(3) div.flex.items-center.gap-4 div.space-y-1 p:nth-child(2) span:nth-child(1)"
           )
           .text(),
       };
