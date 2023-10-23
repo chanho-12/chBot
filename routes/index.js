@@ -25,7 +25,7 @@ router.post("/sayPost", function (req, res) {
   const responseBody = {};
   var type = req.body.prompt.split(' ');
   console.log("type", type[0], type[1])
-  if (type[1] == undefined) { 
+  if (type[1] == undefined) {
     responseBody.name = type[1];
     return res.status(200).send(responseBody);
   }
@@ -46,7 +46,7 @@ router.post("/sayPost", function (req, res) {
     return getInner(req, res, type[1], type[0]);
   } else if (type[0] == "보석") {
     return getGems(req, res, type[1], type[0]);
-  } else if (type[0] == "장비") {
+  } else if (type[0] == "장비" || type[0] == "초월") {
     return getEq(req, res, type[1], type[0]);
   } else if (type[0] == "각인") {
     return getEngraving(req, res, type[1], type[0]);
