@@ -181,7 +181,12 @@ const getInfo = async (req, res, char, command) => {
           .text(),
         cho: $(element)
           .find(
-            "div.cursor-pointer:nth-child(3) div.flex.items-center.gap-4 div.space-y-1 p:nth-child(2) span"
+            "div.cursor-pointer:nth-child(3) div.flex.items-center.gap-4 div.space-y-1 p:nth-child(2)"
+          )
+          .text(),
+        cho1: $(element)
+          .find(
+            "div.cursor-pointer:nth-child(3) div.mb-3.flex.items-center.gap-3"
           )
           .text(),
       };
